@@ -1,0 +1,58 @@
+{% extends "main_page.html" %}
+{% load static %}
+{% block css_add %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+<title>Корзина</title>
+{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Корзина</li>
+    </ol>
+</nav>
+{% if cart %}
+<h1>Оформление заказа:</h1>
+
+<table class="basket" border="border-collapse">
+    <thead>
+    <tr class="list">
+        <th></th>
+        <th>Название товара</th>
+        <th>Количество</th>
+        <th>Цвет</th>
+        <th>Удалить</th>
+        <th>Цена за единицу</th>
+        <th>Общая цена по товару</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for item in cart %}
+    {% with product=item.product %}
+    <tr class="product">
+        <td><img src="{% static product.image %}" class="product-img-basket" style="width: 100px;"></td>
+        <td>{{ product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.colors }}</td>
+        <td><a href="{% url 'cart_remove'  product.id %}">Удалить</a></td>
+        <td class="num">{{ item.price }} руб</td>
+        <td class="num">{{ item.total_price }} руб</td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+
+    </tbody>
+</table>
+<h3>ОБЩАЯ СТОИМОСТЬ
+    {{ cart.get_total_price }}руб</h3>
+<button type="button" class="checkout" style="width: 300px; height: 50px; float: right;">
+    <a href="{% url 'order_create' %}" style="color: #222;">Оформить заказ</a>
+</button>
+
+
+{% else %}
+<h1 class="empty-cart">Корзина пуста</h1>
+{% endif %}
+{% endblock %}
