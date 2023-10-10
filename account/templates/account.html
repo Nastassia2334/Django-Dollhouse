@@ -1,0 +1,57 @@
+{% extends "main_page.html" %}
+{% load static %}
+{% block css_add %}
+
+<title>Личный кабинет</title>
+{% endblock %}
+
+{% block content %}
+<style>
+    .breadcrumb-item a{
+        color: #222;
+    }
+
+    .breadcrumb-item a:hover {
+        color: #FF69B4;
+    }
+    .hello {
+        font-size: 45px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+        margin-top: 100px;
+        color: #222;
+    }
+
+    .hello a{
+        color: #222;
+    }
+
+    .hello a:hover {
+        color: #FF69B4;
+
+    }
+
+    .reg {
+        font-size: 45px;
+        font-family: 'Open Sans', sans-serif;
+    }
+</style>
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Личный кабинет</li>
+    </ol>
+</nav>
+<div class="hello" style="text-align: center;">
+    {% if user.is_authenticated %}
+    <h3>Здравствуй, {{user.username}}!</h3>
+    <p><a class="reg" href="{% url 'logout' %}">Выйти</a></p>
+    {% else %}
+    <p>Вы не авторизованы</p>
+    <a href="{% url 'login' %}">Войти в личный кабинет</a> |
+    <a href="{% url 'register' %}">Зарегистрироваться</a>
+    {% endif %}
+</div>
+
+{% endblock %}

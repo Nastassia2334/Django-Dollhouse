@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+
+{% block page_content %}
+<style>
+    h1 {
+        text-align: center;
+        font-size: 25px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        color: #222;
+        margin-top: 50px;
+
+    }
+    p {
+        text-align: center;
+        font-size: 20px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+
+    }
+    form {
+        padding: 20px;
+        font-size: 20px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+
+
+    }
+    input[type=text], input[type=password], input[type=email], input[type=password2] {
+        width: 40%;
+        padding: 15px;
+        margin: 10px 20px 22px 10px;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+        font-size: 25px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+
+    .helptext {
+         font-size: 0;
+    }
+
+    .btn {
+        width: 500px;
+        height: 60px;
+        font-size: 30px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+        background-color: #FF69B4;
+
+    }
+    .main_page {
+        font-size: 25px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+    .main_page:hover{
+        color: #FF69B4;
+    }
+</style>
+<p><a href="{% url 'main_page' %}" class="main_page">Вернуться на главную страницу</a></p>
+    <h1>Регистрация</h1>
+    <p>Пожалуйста, зарегистрируйтесь, используя следующую форму:</p>
+    <form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input class="btn" type="submit" value="Зарегистрироваться"></p>
+    </form>
+{% endblock %}

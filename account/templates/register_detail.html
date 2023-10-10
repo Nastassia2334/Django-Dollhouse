@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+
+{% block page_content %}
+<style>
+    .reg a:hover {
+      color: #FF69B4;
+    }
+    .main_page {
+        font-size: 25px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+    .main_page:hover{
+        color: #FF69B4;
+    }
+</style>
+
+<p><a href="{% url 'main_page' %}" class="main_page">Вернуться на главную страницу</a></p>
+<div class="reg">
+    <h1>Здравствуй {{ new_user.first_name }}!</h1>
+    <p>Ваша учетная запись успешно создана. Теперь вы можете <a href="{% url 'login' %}">войти в свой профиль</a>.</p>
+    </div>
+{% endblock %}
