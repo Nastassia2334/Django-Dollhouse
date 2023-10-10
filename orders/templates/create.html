@@ -1,0 +1,45 @@
+{% extends "main_page.html" %}
+{% load static %}
+{% block css_add %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/orders.css' %}">
+<title>Оформление заказа</title>
+{% endblock %}
+{% block content %}
+<h1>Оформление заказа</h1>
+<section>
+    <div class="order-info">
+        <h3>Ваш заказ</h3>
+        <div class="card mb-3" style="max-width: 900px;">
+            {% for item in cart %}
+            {% with product=item.product %}
+            <div class="row g-1" style="padding: 20px;">
+                <div class="col-md-4">
+                    <img src="{% static product.image %}" class="img-fluid rounded-start product-img-basket"
+                         style="width: 200px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.product.name }}({{ item.colors }})</h5>
+                        <p class="card-text">{{ item.quantity }}x {{ item.price }} руб</p>
+
+                    </div>
+                </div>
+            </div>
+            {% endwith %}
+            {% endfor %}
+        </div>
+        <p>Итого: {{ cart.get_total_price }} руб</p>
+    </div>
+
+
+    <form action="." method="post" class="order-form">
+        {{ form.as_p }}
+        <p><input type="submit" value="Заказать" class="button-order"></p>
+        {% csrf_token %}
+    </form>
+
+</section>
+<p>*Стоймость товара без учета доставки</p>
+<br>
+
+{% endblock %}

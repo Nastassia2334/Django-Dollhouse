@@ -1,0 +1,65 @@
+.order-info {
+    float: right;
+    width: 50%;
+}
+
+.order-info p{
+    font-size: 35px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+
+}
+
+.order-form {
+    float: left;
+    width: 50%;
+}
+
+.button-order {
+  background: #FF69B4;
+  color: white;
+  border: 0;
+}
+
+
+
+
+
+.order-form {
+    padding: 50px;
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+
+
+
+.cart {
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.cart img{
+    margin: 30px;
+}
+
+
+
+
+
+.order-form p{
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.order-form p> label {
+    padding: 8px 16px 8px 0;
+    flex: 1;
+}
+
+.order-form p> input {
+    padding: 8px;
+    flex: 2;
+}
