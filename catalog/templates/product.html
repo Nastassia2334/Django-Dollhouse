@@ -1,0 +1,133 @@
+{% extends "main_page.html" %}
+{% load static %}
+{% block css_add %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/catalog.css' %}">
+<title>{{ product.name }}</title>
+{% endblock %}
+
+{% block content %}
+
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'catalog' %}">Каталог</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'product_category' product.category.category_slug %}">
+            {{ product.category }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+    </ol>
+</nav>
+
+<h1>{{ product.name }}</h1>
+
+
+{% if images %}
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel"
+     style="float: left; width: 40%;">
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static product.image %}" class="d-block" style="width: auto; height: 700px; padding: auto; margin-left: 100px;">
+        </div>
+        {% for image in images %}
+        <div class="carousel-item">
+            <img src="{% static image.image %}" class="d-block" style="width: auto; height: 700px; padding: auto; margin-left: 100px;">
+        </div>
+
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="left: 0px;">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Предыдущий</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Следующий</span>
+    </button>
+
+</div>
+{% else %}
+<img src="{% static product.image %}" class="product-img">
+{% endif %}
+
+
+<h5>Цена {{ product.price }} руб</h5>
+<br>
+
+<table>
+
+    <tr>
+        <th>Параметры</th>
+        <td>{{ product.options }}</td>
+    </tr>
+
+    <tr>
+        <th>Вес</th>
+        <td>{{ product.weight }}</td>
+    </tr>
+
+    <tr>
+        <th>Материал</th>
+        <td>{{ product.material }}</td>
+    </tr>
+
+    <tr>
+        <th>Покрытие</th>
+        <td>{{ product.coverage }}</td>
+    </tr>
+
+    <tr>
+        <th>Комплектация</th>
+        <td>{{ product.equipment }}</td>
+    </tr>
+    <tr>
+        <td>
+            <form action="{% url 'cart_add' product.id %}" method="post" class="form-add">
+                {% csrf_token %}
+                {{ cart_product_form }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" value="Добавить в корзину" class="add-cart">
+            </form>
+        </td>
+    </tr>
+</table>
+
+<br>
+<br>
+<div class="text-description">
+    <h4 class="title">Описание</h4>
+    <p>{{ product.description }}</p>
+</div>
+<br>
+<br>
+
+
+<br>
+<div class="hgfd">
+    <h3 style="padding-top: 700px;">Наши товары:</h3>
+    <br>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for products in random_products %}
+        <div class="col">
+
+            <div class="cards h-100">
+                <img src="{% static products.image %}" class="card-img-top">
+                <div class="card-body">
+                    <h4 class="name">{{ products.name }}</h4>
+                    <p class="text">{{ products.price }}</p>
+                    <a href="{% url 'product_one' products.category.category_slug products.product_slug %}"
+                       class="btn btn-look border-danger">Посмотреть</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}

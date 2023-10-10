@@ -1,0 +1,36 @@
+{% extends "main_page.html" %}
+{% load static %}
+{% block css_add %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/catalog.css' %}">
+<title>Каталог</title>
+{% endblock %}
+
+{% block content %}
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Каталог</li>
+    </ol>
+</nav>
+
+<h1>Каталог</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+{% for category in all_category %}
+    <div class="col">
+        <div class="card h-100" style="border-radius: 25px 15px;">
+            <a href="{% url 'product_category' category.category_slug %}">
+                <img src="{% static category.image %}" class="card-img-top"></a>
+            <div class="card-body">
+                <a class="card-title" href="{% url 'product_category' category.category_slug %}">{{ category.name }}</a>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+
