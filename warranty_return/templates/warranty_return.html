@@ -1,0 +1,28 @@
+{% extends "main_page.html" %}
+{% load static %}
+{% block css_add %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/warranty.css' %}">
+<title>Гарантия и возврат товара</title>
+{% endblock %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Гарантия и возврат товара</li>
+    </ol>
+</nav>
+
+<div class="img-top">
+    <img src="{% static 'image/dom4.png' %}" class="img-first" style="width: 800px;">
+    <img src="{% static 'image/zvezda1.png' %}" class="img-two" style="width: auto">
+
+</div>
+{% for action in actions %}
+<h1>{{ action.name }}</h1>
+<div class="text-pay">
+    <p class="text-descriptions">{{action.name_description }}</p>
+</div>
+{% endfor %}
+{% endblock %}

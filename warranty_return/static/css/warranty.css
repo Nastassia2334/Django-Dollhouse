@@ -1,0 +1,43 @@
+.breadcrumb {
+    padding-top: 10px;
+}
+
+.breadcrumb-item a{
+    color: #222;
+}
+
+.breadcrumb-item a:hover {
+    color: #FF69B4;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.img-first {
+    margin: 40px;
+    float: left;
+    width: 60%;
+
+}
+
+.img-two {
+    margin: 50px;
+    float: right;
+    width: 50%;
+
+}
+
+
+.text-descriptions {
+    margin-top: 50px;
+    margin: 20px;
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+    white-space: pre-wrap;
+}
