@@ -1,0 +1,57 @@
+{% extends "main_page.html" %}
+{% load static %}
+{% block css_add %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/delivery.css' %}">
+<title>Оплата и доставка</title>
+{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Оплата и доставка</li>
+    </ol>
+</nav>
+
+<h1>Доставка</h1>
+<br>
+<table class="table">
+    <tr>
+
+        <th></th>
+        <th>Срок доставки</th>
+        <th>Стоймость доставки</th>
+
+
+    </tr>
+    {% for delivery in delivery_goods %}
+    <tr>
+        <th colspan="4" class="land">{{ delivery.delivery_country }}</th>
+    <tr>
+
+        <td>{{ delivery.delivery_service }}</td>
+        <td>{{ delivery.delivery_time }}</td>
+        <td>{{ delivery.cost_of_delivery }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<h1>Оплата</h1>
+<div class="col">
+    <img src="{% static 'image/dom9.png' %}" class="img-first" style="width: 800px;">
+
+
+</div>
+
+{% for payment in payment_goods %}
+<h4 class="payment">{{ payment.name }}</h4>
+<div class="text-pay">
+    <p class="text-descriptions">{{ payment.descriptions }}</p>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}
+
