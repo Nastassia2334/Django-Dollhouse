@@ -1,0 +1,58 @@
+{% extends "main_page.html" %}
+{% load static %}
+
+
+{% block css_add %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&display=swap" rel="stylesheet">
+<title>Поиск</title>
+{% endblock %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Поиск</li>
+    </ol>
+</nav>
+
+<h2 class="text center" style="margin-left: 20px;"> Результаты поиска: </h2>
+
+<hr>
+
+<div class="container">
+
+    <div class="row justify-content-center m-4" >
+
+        {% if product_list %}
+
+        {% for product in product_list %}
+
+        <div class="col-md-3" style="margin: 40px;">
+            <div class="card m-3 p-2 h-100 search-card">
+                <a href="{% url 'product_category' product.category.category_slug %}">
+                    <img src="{% static product.image %}" class="card-img-top"></a>
+                <div class="card-body">
+                    <a class="card-title name" href="{% url 'product_one' product.category.category_slug product.product_slug %}">
+                    {{ product.name }}</a>
+                    <p class="cart-title price" style=""> {{ product.price }} руб</p>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        {% else %}
+        <h3>Совпадений нет </h3>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

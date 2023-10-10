@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_add %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&display=swap" rel="stylesheet">
+<title>Кукольные домики WOODINTONE</title>
+{% endblock %}
+
+{% block page_content %}
+<style>
+    html {
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        color: #fff;
+        margin: 35px;
+    }
+
+    .welcome {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 50px;
+    }
+
+
+/*настройки верхней менюшки при наведении*/
+    .top-menu li a::after {
+        content: '';
+        display: block;
+        width: 100%;
+        background-color: #FF69B4;
+        height: 1px;
+        transition: all .3s;
+        transform: scale(0);
+    }
+
+    .top-menu li a:hover::after {
+        transform: scale(1);
+    }
+
+    .social-icons {
+        margin: 0;
+        padding: 10px;
+    }
+
+    .menu {
+        color: #080808;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        font-size: 25px;
+        width: 400px;
+        word-break: break-word;
+    }
+
+    .icons img{
+        width: 48px;
+    }
+
+    .search {
+        display: flex;
+        background: #FF69B4;
+        height: 48px;
+        border-radius: 48px;
+    }
+
+    .searchBtn {
+        width: 48px;
+        height:48px;
+        border: none;
+        border-radius: 60%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+        color: #fff;
+        cursor: pointer;
+    }
+
+
+    .search:hover  .searchText {
+        width: 240px;
+        padding: 0 6px;
+        text-color: #fff;
+    }
+
+    .searchText {
+        border: none;
+        background: none;
+        outline: none;
+        padding: 0;
+        color: #fff;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 0;
+        font-weight: bold;
+    }
+
+    .footer {
+        bottom: 0;
+        z-index: 5;
+        position: relative;
+        min-width: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+
+
+
+
+</style>
+<nav class="navbar navbar-light bg-light welcome" style="height: 70px;">
+    <div class="container-fluid position-relative">
+        <span class="navbar-text">Добро пожаловать в магазин детских товаров Woodintone</span>
+        <div class="position-relative" style="padding: 0px; margin: 0px; font-size: 20px;">
+            <a class="social-icons " target="_blank" href="https://vk.com/"><img src="{% static 'icons/VK.png' %}"
+                                                                                 width="35"></a>
+            <a class="social-icons" target="_blank" href="https://www.instagram.com/"><img
+                    src="{% static 'icons/Instagram.png' %}"
+                    width="35"></a>
+            <a class="social-icons" target="_blank" href="https://www.tiktok.com/"><img
+                    src="{% static 'icons/TikTok.png' %}"
+                    width="35"></a>
+            <a class="social-icons" target="_blank" href="https://ru-ru.facebook.com/"><img
+                    src="{% static 'icons/Facebook.png' %}"
+                    width="35"></a>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+
+    <div class="container-fluid main">
+        <a class="navbar-brand" href="{% url 'main_page' %}" style="background: #FF69B4;">
+            <img src="{% static 'image/L-02.png' %}" alt="" width="300" height="70">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Переключатель навигации">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse top-menu" id="navbarNav">
+            <ul class="navbar-nav nav-justified">
+                <li class="nav-item">
+                    <a class="nav-link menu" href="{% url 'catalog' %}">Каталог</a>
+                </li>
+                <li class="nav-item"><a class="nav-link menu" href="{% url 'delivery' %}">Оплата и доставка</a>
+                </li>
+                <li class="nav-item"><a class="nav-link menu" href="{% url 'warranty_return' %}">Гарантия и возврат
+                    товара</a>
+                </li>
+                <li class="nav-item"><a class="nav-link menu" href="{% url 'contacts' %}">Контакты</a>
+                </li>
+            </ul>
+
+
+        </div>
+        <!--Поиск-->
+        <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <form class="search" method="GET" action="{% url 'search_result' %}">
+                <input name="q" type="text" class="searchText" placeholder="Поиск...">
+                <button class="searchBtn icons"><img src="{% static 'icons/search1.svg' %}"></button>
+            </form>
+        </div>
+        <!--Корзина-->
+        <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <a type="button" class="nav-link icons" href="{% url 'cart_detail' %}">
+                <img src="{% static 'icons/shopping.svg' %}"></a>
+        </div>
+        <!--Вход в личный кабинет-->
+        <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <a type="button" class="nav-link icons" href="{% url 'account' %}">
+                <img src="{% static 'icons/identity.svg' %}"></a>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+<!-- Цитата главная картинка-->
+<div class="card text-white first-page">
+    <img src="{% static 'image/dom5.png' %}" class="card-img first-img">
+</div>
+<div class="card-body text-center">
+    <blockquote class="blockquote mb-0 fst-italic quote"><p>"Детская мечта теперь реальность"</p>
+        <footer class="blockquote-footer">Команда Woodintone</footer>
+    </blockquote>
+</div>
+
+<!-- Про компанию-->
+<div class="container-fluid my-card">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+            <div class="card border-danger h-100" style="max-width: 22rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Преимущества в работе с клиентами</h4>
+                    <p class="card-text">
+                    <p>– Индивидуальный подход к каждому клиенту</p>
+                    <p>– Быстрая доставка точно в срок</p>
+                    <p>– Оплата удобным для покупателя способом</p>
+                    <p>– Работа с клиентами по всему миру</p>
+                    <p>– Работаем как с физическими лицами, так и B2B</p>
+                    <p>– Оформление заказов 24/7</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-danger h-100" style="max-width: 22rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Информация о материалах нашей продукции</h4>
+                    <p class="card-text">
+                    <p>– Высокое качество материалов из дерева</p>
+                    <p>– Сертификат и паспорта качества</p>
+                    <p>– Безопасное покрытие</p>
+                    <p>– Экологичность</p>
+                    <p>– Прочность</p>
+                    <p>– Износостойкость</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-danger h-100" style="max-width: 22rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Преимущества нашей продукции</h4>
+                    <br>
+                    <p class="card-text">
+                    <p>– Эксклюзивность во всём</p>
+                    <p>– Индивидуально разработанные модели</p>
+                    <p>– Широкая цветовая гамма</p>
+                    <p>– Вариативность размеров</p>
+                    <p>– Высокая детализация</p>
+                    <p>– Сделано в Беларуси</p>
+                    <p>– Ручная работа</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-danger h-100" style="max-width: 22rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Польза нашей продукции для Ваших детей</h4>
+                    <br>
+                    <p class="card-text">
+                    <p>– Развивает мелкую моторику</p>
+                    <p>– Развивает воображение</p>
+                    <p>– Развивает навыки сюжетно-ролевых игр</p>
+                    <p>– Развивает координаторную функцию и ловкость движений</p>
+                    <p>– Развивает навык ухода за собой</p>
+                    <p>– И многое другое…</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+<!-- Подборка продукции -->
+
+<section>
+    <div class="container-xxl">
+        <h2>Наши товары</h2>
+        <br>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+
+                    <div class="row justify-content-between row-cols-4">
+                        {% for products in random_products %}
+                        <div class="col">
+
+                            <div class="card w-100 h-100">
+                                <img src="{% static products.image %}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ products.name }}</h5>
+                                    <p class="card-text">{{ products.price }} руб</p>
+                                    <a href="{% url 'product_one' products.category.category_slug products.product_slug %}"
+                                       class="btn btn-look border-danger">Посмотреть</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div class="carousel-item">
+                    <div class="row justify-content-between row-cols-4">
+                        {% for products_two in random_products_two %}
+                        <div class="col">
+                            <div class="card w-100 h-100">
+                                <img src="{% static products_two.image %}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ products_two.name }}</h5>
+                                    <p class="card-text">{{ products_two.price }} руб</p>
+                                    <a href="{% url 'product_one' products_two.category.category_slug products_two.product_slug %}"
+                                       class="btn btn-look border-danger">Посмотреть</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row justify-content-between row-cols-4">
+                        {% for products_three in random_products_three %}
+                        <div class="col">
+                            <div class="card w-100 h-100">
+                                <img src="{% static products_three.image %}" class="card-img-top">
+                                <div class="card-body" style="text-align: center;">
+                                    <h5 class="card-title">{{ products_three.name }}</h5>
+                                    <p class="card-text">{{ products_three.price }} руб</p>
+                                    <a href="{% url 'product_one' products_three.category.category_slug products_three.product_slug %}"
+                                       class="btn btn-look border-danger">Посмотреть</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Предыдущий</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Следующий</span>
+            </button>
+        </div>
+</section>
+{% endblock %}
+<br>
+<br>
+
+
+
+<footer class="text-start text-lg-start text-muted">
+
+    <!-- Section: Links  -->
+    <section class="footer">
+        <div class="container-footer" style="padding-top: 60px;">
+            <!-- Grid row -->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-5 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+
+                        <a class="navbar-brand" href="{% url 'main_page' %}" style="background: #FF69B4">
+                            <img src="{% static 'image/L-02.png' %}" alt="" width="250" height="50">
+                        </a>
+                    </h6>
+
+                    <br>
+                    <br>
+                    <p>Регистрационный номер в Торговом реестре 111111.</p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-6">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Каталог
+                    </h6>
+                    {% for category in all_category %}
+                    <p>
+                        <a href="{% url 'product_category' category.category_slug %}" class="text-reset">
+                            {{ category.name }}</a>
+                    </p>
+
+                    {% endfor %}
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Информация
+                    </h6>
+                    <p>
+                        <a href="{% url 'delivery' %}" class="text-reset">Оплата и доставка</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'warranty_return' %}" class="text-reset">Гарантия и возврат
+                            товара</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'contacts' %}" class="text-reset">Контакты</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">Режим работы</h6>
+                    <p><i class="fas fa-home me-3"></i> Приём заказов: круглосуточно</p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i>
+                        Обработка заказов: пн-пт 9:00 - 18:00
+                    </p>
+                    <p><i class="fas fa-phone me-3"></i> info@woodintone.by</p>
+                    <p><i class="fas fa-print me-3"></i> +123 45 6789 101</p>
+                    <a class="social-icons " target="_blank" href="https://vk.com/"><img
+                            src="{% static 'icons/VK.png' %}"
+                            width="35"></a>
+                    <a class="social-icons" target="_blank" href="https://www.instagram.com/"><img
+                            src="{% static 'icons/Instagram.png' %}"
+                            width="35"></a>
+                    <a class="social-icons" target="_blank" href="https://www.tiktok.com/"><img
+                            src="{% static 'icons/TikTok.png' %}"
+                            width="35"></a>
+                    <a class="social-icons" target="_blank" href="https://ru-ru.facebook.com/"><img
+                            src="{% static 'icons/Facebook.png' %}"
+                            width="35"></a>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2023
+        <a class="text-reset fw-bold">WOODINTONE</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+{% endblock %}
+
+

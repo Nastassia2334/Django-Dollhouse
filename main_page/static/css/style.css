@@ -1,0 +1,60 @@
+/*цитата*/
+.quote {
+    font-size: 50px;
+    font-family: 'Open Sans', sans-serif;
+    color: #FF69B4;
+}
+
+.carousel-control-prev-icon {
+    background-image: url(../icons/prev.svg);
+}
+
+.carousel-control-next-icon {
+    background-image: url(../icons/next.svg);
+}
+
+.carousel-control-prev {
+    left: -120px;
+}
+
+.carousel-control-next {
+    right: -120px;
+}
+
+
+.breadcrumb-item a{
+    color: #222;
+}
+
+.breadcrumb-item a:hover {
+    color: #FF69B4;
+}
+
+/*search*/
+.name {
+    display: block;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+    color: #222;
+}
+
+.price {
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+    color: #222;
+}
+
+.name:hover {
+    color: #FF69B4;
+}
+.col-md-3 {
+    padding-bottom: 40px;
+
+}
+.search-card {
+    width: 18rem;
+    border-radius: 25px 15px;
+}
+
