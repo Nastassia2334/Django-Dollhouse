@@ -1,0 +1,29 @@
+<style>
+    .main_page {
+        font-size: 25px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+    .main_page:hover{
+        color: #FF69B4;
+    }
+
+    .logged a{
+        font-size: 25px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+
+    .logged a:hover{
+       color: #FF69B4;
+    }
+</style>
+
+
+<p><a href="{% url 'main_page' %}" class="main_page" >Вернуться на главную страницу</a></p>
+
+
+<div class="logged" style="text-align: center; font-size: 35px; font-family: 'Open Sans', sans-serif; color: #222; margin-top: 100px;">
+    <p>Вы вышли из личного кабинета!</p>
+    <a href="{% url 'login'%}">Нажмите здесь, чтобы войти снова.</a>
+</div>

@@ -1,0 +1,88 @@
+
+{% if form.errors %}
+<p>Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз.</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>У вашего аккаунта нет доступа к этой странице. Продолжать,
+    пожалуйста, войдите с учетной записью, которая имеет доступ.</p>
+{% else %}
+<p>Пожалуйста, войдите, чтобы увидеть эту страницу.</p>
+{% endif %}
+{% endif %}
+<style>
+    table {
+        padding-top: 50px;
+        margin: auto;
+        font-size: 35px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+    table td {
+        width: 350px;
+        height: 20px;
+    }
+
+    table input{
+        width: 350px;
+        height: 30px;
+    }
+
+    h1 {
+        margin-top: 50px;
+        margin-left: 100px;
+        font-size: 35px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+    .btn {
+        text-align: center;
+        margin: auto;
+        margin-top: 40px;
+    }
+
+    .btn input{
+        width: 500px;
+        height: 60px;
+        font-size: 30px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+        background-color: #FF69B4;
+
+    }
+    .main_page {
+        font-size: 25px;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+    .main_page:hover{
+        color: #FF69B4;
+    }
+
+</style>
+<p><a href="{% url 'main_page' %}" class="main_page">Вернуться на главную страницу</a></p>
+
+<h1>Вход</h1>
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+    </table>
+    <div class="btn">
+        <input type="submit" value="Войти"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+</form>
+
+
