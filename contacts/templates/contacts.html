@@ -1,0 +1,55 @@
+{% extends "main_page.html" %}
+{% load static %}
+{% block css_add %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
+<title>Контакты</title>
+{% endblock %}
+
+{% block content %}
+<br>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+    </ol>
+</nav>
+<img src="{% static 'image/domik.png' %}" class="img-photo">
+{% for contact in all_contacts %}
+<div class="contacts-body">
+    <p class="name">{{ contact.name }}</p>
+    <div class="nav-item">
+        <p>{{ contact.address }}</p>
+        <p>{{ contact.registration}}</p>
+        <p>{{ contact.registration_number }}</p>
+
+    </div>
+    <p class="orders">{{ contact.working_mode }}</p>
+    <p class="mail">{{ contact.mail }}</p>
+    <p class="number">{{ contact.phone_number }}</p>
+
+
+</div>
+
+{% endfor %}
+<div class="social-message">
+    <a class="social-icons " target="_blank" href="https://web.telegram.org/k/">
+        <img src="{% static 'icons/Telegram.png' %}" width="90"></a>
+    <a class="social-icons" target="_blank" href="https://web.whatsapp.com/">
+        <img src="{% static 'icons/WhatsApp.png' %}" width="90"></a>
+
+</div>
+<h3>Подписывайтесь и следите за нами в соц.сетях:</h3>
+<div class="social-media">
+    <a class="social-icons " target="_blank" href="https://ru-ru.facebook.com/">
+        <img src="{% static 'icons/Facebook.png' %}" width="100"></a>
+    <a class="social-icons" target="_blank" href="https://www.instagram.com/">
+        <img src="{% static 'icons/Instagram.png' %}" width="100"></a>
+    <a class="social-icons" target="_blank" href="https://www.tiktok.com/">
+        <img src="{% static 'icons/TikTok.png' %}" width="100"></a>
+    <a class="social-icons" target="_blank" href="https://vk.com/">
+        <img src="{% static 'icons/VK.png' %}" width="100"></a>
+</div>
+<br>
+<br>
+<br>
+{% endblock %}

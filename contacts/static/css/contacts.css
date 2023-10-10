@@ -1,0 +1,73 @@
+.breadcrumb {
+    padding-top: 10px;
+}
+
+.breadcrumb-item a{
+    color: #222;
+}
+
+.breadcrumb-item a:hover {
+    color: #FF69B4;
+}
+
+.name {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.img-photo {
+    float: left;
+    width: 40%;
+    margin: 40px;
+}
+
+.nav-item {
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.orders {
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+    white-space: pre-wrap;
+}
+
+.mail {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.number {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+h3 {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin: 30px;
+}
+
+.social-message {
+    text-align: center;
+
+}
+
+.social-media {
+    text-align: center;
+}
+
+.social-icons {
+    padding: 30px;
+}
