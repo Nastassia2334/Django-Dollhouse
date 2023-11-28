@@ -1,5 +1,6 @@
 # Django-Dollhouse
   Учебный финальный проект интернет-магазина на Django с использование базы данных sqlite3. Страницы сайта реализованы с помощью Bootstrap 5.
+  
   Посмотреть этот проект можно ---> https://youtu.be/1GtN6P7naIo?si=GwKmKoYXEntqktnz
 
 ## Функционал
